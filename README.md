@@ -52,11 +52,13 @@ Copyright (c) 2012 Jeffrey Leary
 Released under Simplified BSD License. See docs/LICENSE for details.
 
 DESCRIPTION:
+
 Implements a simple environment grid for robots. The grid acts as a 
 short-term memory map of obstacles the robot has encountered.
 
 SYNOPSIS:
-  botGrid *grid = new_botgrid(27);
+
+    botGrid *grid = new_botgrid(27);
 
     // space directly in front of robot is clear?
     // 1 = an obstacle, 0 = no obstacle
