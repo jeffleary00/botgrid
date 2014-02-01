@@ -30,7 +30,7 @@ GRID
 ====
 resembles something like this. With the robot always exising in the center.
 
-
+<pre>
       |       |
   s1  |  s2   |  s3
       |       |
@@ -42,4 +42,4 @@ resembles something like this. With the robot always exising in the center.
       |       |
   s7  |  s8   |  s9
       |       |
-
+</pre>
