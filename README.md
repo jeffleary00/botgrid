@@ -24,3 +24,21 @@ For examples, (assuming bit sizes: char = 8, short = 16);
   - A 9x9 grid would use 26 bytes of memory.
   - A 27x27 grid would use 192 bytes of memory.
   - A 81x81 grid would use 1646 bytes of memory.
+
+
+GRID 
+====
+resembles something like this. With the robot always exising in the center.
+
+        |       |
+    s1  |  s2   |  s3
+        |       |
+  ------+-------+------
+        |       |
+    s4  |  s5*  |  s6
+        |       |
+  ------+-------+------
+        |       |
+    s7  |  s8   |  s9
+        |       |
+
