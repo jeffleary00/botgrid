@@ -6,17 +6,35 @@ Designed for simple robots.
 
 This is still under heavy development, and is not ready for use.
 
+The idea behind this was, that relatively dumb robots (touch-sensor
+obstacle detection only) could save a lot of enery by not randomly 
+turning and trying new directions when bumping into objects.
+
+From some Tcl/Tk bot simulations I built, I observed that dumb robots spend 
+a LOT of time bumping into the same objects over and over again. In fact,
+a dumb robot can deplete its battery by getting stuck in a corner of a room.
+
+If there was a way to help them remember, even if for a short time, where 
+objects are... they should waste less power by not rotating in directions that
+are known to contain more obstacles.
+
+Also, simple wavefront algoriths could be implemented, that would allow 
+a not-so-dumb robot to navigate to nearby way-points using the in-memory grid
+map.
+
+
 NOTES
 =====
 The grid is built and manipulated at a bit level to minimize memory usage,
-but care must still be taken to ensure your platform has enough memory.
+on low-memory PIC type microcontrollers. but care must still be taken to 
+ensure your platform has enough memory.
  
 The amount of memory used by the object depends on the size of the grid. 
  
 Be aware that during grid shifts a temporary copy of the grid is needed
-in order to perform the transformations. 
+in order to perform the transformations. So DOUBLE the memory is required.
  
-So, to calculate MAX memory needed by a grid:
+So, to calculate MAX memory needed by a grid (incluing the temp grid):
  
 (((X axis * Y axis)/byte-size) + 1) * 2 + ((sizeof char * 2) + sizeof short) 
  
@@ -75,7 +93,9 @@ SYNOPSIS:
         botgrid_shift(grid, 0, 0, -90)
     }
 
+
 DETAILS:
+
 As a robot moves and rotates, the grid should be shifted accordingly. 
 Objects will eventually 'fall off' the grid and be forgotten as the 
 robot travels.
@@ -85,12 +105,8 @@ Objects in the grid are stored at a bit level inside of an array of bytes.
 To calculate memory usage:
 
 Memory used by the grid object.
- BYTES = (( grid_axis_sizegrid_axis_size ) / 8) + 1
 
-During grid shifts, a temporary grid must be created to do the
-This module is intended to be used by other modules, and not by the
-user directly.  For safe, Lisp-like lists, see Containers/SLists.h
-instead.
+ BYTES = (( grid_axis_size * grid_axis_size ) / 8) + 1
 
 KNOWN ISSUES:
 Due to the small size of the grids, and the loss of accuracy that occurs
